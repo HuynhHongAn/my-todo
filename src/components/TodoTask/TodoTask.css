@@ -1,0 +1,32 @@
+.todo-task {
+    position: relative;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 2px 2px 2px #888888;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.dropdown-toggle::after {
+    display:none;
+}
+
+.task-options {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.todo-task-content {
+    margin-right: 38px;
+    cursor: pointer;
+}
+
+.task-desc {
+    font-size: 14px;
+    color: gray;
+}

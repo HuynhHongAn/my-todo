@@ -1,6 +1,5 @@
 import React from "react"
-// import {Dropdown} from "react-bootstrap";
-// import {FaBars} from "react-icons/all";
+import {ButtonGroup, Button} from "react-bootstrap";
 import "./Header.css"
 
 const Header = () => {
@@ -8,12 +7,6 @@ const Header = () => {
         <div className="header">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <a className="navbar-brand" href="#0">{"Tdo"}</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#0navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
@@ -23,11 +16,10 @@ const Header = () => {
                             <a className="nav-link" href="#0">Tasks</a>
                         </li>
                     </ul>
-                    <form className="form-inline my-2 my-lg-0">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search"
-                               aria-label="Search"/>
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <ButtonGroup aria-label="Basic example">
+                        <Button variant="secondary">Login</Button>
+                        <Button variant="secondary">Register</Button>
+                    </ButtonGroup>
                 </div>
             </nav>
 
