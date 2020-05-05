@@ -8,3 +8,9 @@
     font-weight: bold;
     background-color: white;
 }
+
+.plus-container {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
