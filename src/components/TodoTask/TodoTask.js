@@ -6,11 +6,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class TodoTask extends React.Component {
     render() {
+        let {task} = this.props
         return (
             <div className={'todo-task'}>
                 <div className={"todo-task-content"} onClick={this.props.handleOpenModal}>
-                    <div className={"task-title"}>Research project</div>
-                    <div className={"task-desc"}>Go to the product source Go to the product source</div>
+                    <div className={"task-title"}>{task.title}</div>
+                    <div className={"task-desc"}>{task.description}</div>
                 </div>
 
                 <div className={"task-options"}>

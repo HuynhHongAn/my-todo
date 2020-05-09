@@ -5,14 +5,40 @@ import "./TodoBlock.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import * as common from "../../constants/common"
 
-
 class TodoBlock extends Component{
-    constructor() {
+    constructor({type}) {
         super();
         this.state = {
             isModalShow: false,
-            modalType: common.MODAL_TYPE_CREATE
+            modalType: common.MODAL_TYPE_CREATE,
+            todoType: type,
+            tasks: [],
+            error: ""
         }
+    }
+
+    componentDidMount() {
+        let listUrl = "http://localhost:3000/tasks/?type=" + this.state.todoType
+        fetch(listUrl)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    let tasks = []
+                    if (result.data) {
+                        tasks = result.data
+                    }
+                    this.setState({
+                        isLoaded: true,
+                        tasks: tasks
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error: error
+                    });
+                }
+            )
     }
 
     showModal = (type) => {
@@ -27,6 +53,16 @@ class TodoBlock extends Component{
     }
 
     render() {
+        let {tasks} = this.state
+        let listTasks = (<></>)
+        if (tasks.length > 0) {
+             listTasks = tasks.map((task) => {
+                 //TODO (anhh): add is_done for this
+                return <TodoTask key={task.id} task={task} handleOpenModal={() => this.showModal(common.MODAL_TYPE_EDIT)}/>
+            })
+        }
+
+
         let modalTitle = ""
         switch (this.state.modalType) {
             case common.MODAL_TYPE_CREATE:
@@ -43,12 +79,10 @@ class TodoBlock extends Component{
             <div className={"todo-block"}>
                 <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
                     <Tab eventKey="all" title="All">
-                        <TodoTask handleOpenModal={() => this.showModal(common.MODAL_TYPE_EDIT)}/>
-                        <TodoTask handleOpenModal={() => this.showModal(common.MODAL_TYPE_EDIT)}/>
+                        {listTasks}
                     </Tab>
                     <Tab eventKey="done" title="Done">
-                        <TodoTask handleOpenModal={() => this.showModal(common.MODAL_TYPE_EDIT)}/>
-                        <TodoTask handleOpenModal={() => this.showModal(common.MODAL_TYPE_EDIT)}/>
+                        {listTasks}
                     </Tab>
                 </Tabs>
 
